@@ -6,7 +6,7 @@ var app = new Vue({
     file: null,
     description: "",
     addItem: null,
-    items: [],
+    items: [{},{},{},{},{},{},{},{},{},{}],
     findTitle: "",
     findItem: null,
     currentNumber: 0,
