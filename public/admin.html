@@ -2,35 +2,26 @@
 <html>
 
 <head>
+
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
-  <title>Museum of Ordinary Objects</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>Editor page</title>
 </head>
+
+<div class="topnav">
+  <h1 class="daTitle">Public photo gallery</h1>
+<a href="/index.html" class="fixed">Home page</a>
+<a href="/admin.html" class="fixed">Editor page</a>
+<a href="/comments.html" class="fixed">Comments page</a>
+</div>
 
 <body>
   <div id="admin" class="content">
-    <h1>Museum of Ordinary Objects: The Admin Page!</h1>
+    <h1>Editor page</h1>
       <div class="heading">
-       <div class="circle">1</div>
-       <h2>Add an Item</h2>
-     </div>
-     <div class="add">
-       <div class="form">
-         <input v-model="title" placeholder="Title">
-         <p></p>
-         <textarea v-model="description" placeholder="Item Description"> </textarea>
-         <input type="file" name="photo" @change="fileChanged">
-         <button @click="upload">Upload</button>
-       </div>
-       <div class="upload" v-if="addItem">
-         <h2>{{addItem.title}}</h2>
-         <h2>{{addItem.description}}</h2>
-         <img :src="addItem.path" />
-       </div>
-     </div>
 
-     <div class="heading">
-      <div class="circle">2</div>
+
       <h2>Edit/Delete an Item</h2>
     </div>
     <div class="edit">

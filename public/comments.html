@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <title>photo place</title>
+</head>
+
+<body>
+
+
+  <div class="topnav">
+    <h1 class="daTitle">Public photo gallery</h1>
+  <a href="/admin.html" class="fixed">Editor page</a>
+  <a href="/index.html" class="fixed">Home page</a>
+  <a href="/comments.html" class="fixed">Comments page</a>
+  </div>
+
+
+  <div id="admin" class="content">
+
+
+
+
+    <h1>Comments Section</h1>
+    <form @submit.prevent="addTicket">
+      <input v-model="addedName" placeholder="Enter your name"></p>
+      <textarea v-model="addedProblem" placeholder="Leave a comment"></textarea>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+  <div v-for="ticket in tickets">
+    <hr>
+    <div class="ticket">
+      <div class="problem">
+        <p>{{ticket.problem}}</p>
+        <p><i>-- {{ticket.name}}</i></p>
+      </div>
+      <div class="delete">
+        <button @click="deleteTicket(ticket)" class="delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <div class="daLink">
+      <a href="https://github.com/BryceFuller1/CreativeProject4">My github</a>
+    </div>
+
+  </div>
+
+  <h1> </h1>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/admin.js"></script>
+</body>
+
+</html>

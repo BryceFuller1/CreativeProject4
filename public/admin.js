@@ -1,6 +1,7 @@
 var app = new Vue({
   el: '#admin',
   data: {
+    number:'',
     title: "",
     file: null,
     description: "",
@@ -8,18 +9,38 @@ var app = new Vue({
     items: [],
     findTitle: "",
     findItem: null,
+    currentNumber: 0,
 
+    addedName: '',
+    addedProblem: '',
+    tickets: {},
+  },
+
+  watch: {
+    currentNumber: function () {
+      if ( this.items.length-1 < this.currentNumber)
+      {
+        this.currentNumber = 0;
+      }
+      if( this.currentNumber < 0)
+      {
+        this.currentNumber = this.items.length-1;
+      }
+
+    }
   },
 
   computed: {
     suggestions() {
       return this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
-    }
+    },
   },
 
   created() {
     this.getItems();
+    this.getTickets();
   },
+
 
   methods: {
 
@@ -82,6 +103,53 @@ var app = new Vue({
         console.log(error);
       }
     },
+
+
+    nextItem()
+    {
+      this.currentNumber = this.currentNumber + 1;
+    },
+
+    previousItem()
+    {
+      this.currentNumber = this.currentNumber - 1;
+    },
+
+
+
+    async getTickets() {
+      try {
+        let response = await axios.get("/api/tickets");
+        this.tickets = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async addTicket() {
+      try {
+        let response = await axios.post("/api/tickets", {
+          name: this.addedName,
+          problem: this.addedProblem
+        });
+        this.addedName = "";
+        this.addedProblem = "";
+        this.getTickets();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteTicket(ticket) {
+      try {
+        let response = axios.delete("/api/tickets/" + ticket.id);
+        this.getTickets();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
 
   }
 });

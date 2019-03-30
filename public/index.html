@@ -4,38 +4,65 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
-  <title>Museum of Ordinary Objects</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <title>photo place</title>
 </head>
 
 <body>
-  <div class="header">
-    <div class="logo">
-      <img src="/images/ordinary.png">
-    </div>
-    <div class="title">
-      <h2>Instatrash</h2>
-      <h1>Museum of Ordinary Objects</h1>
-    </div>
+
+
+  <div class="topnav">
+    <h1 class="daTitle">Public photo gallery</h1>
+    <a href="/index.html" class="fixed">Home page</a>
+    <a href="/admin.html" class="fixed">Editor page</a>
+    <a href="/comments.html" class="fixed">Comments page</a>
   </div>
 
-  <div id="app" class="content">
-    <section class="image-gallery">
-     <div class="image" v-for="item in items">
-       <h2>{{item.title}}</h2>
-       <h2>{{item.description}}</h2>
-       <img :src="item.path" />
-     </div>
-  </div>
-  <div class="footer">
-    <a href="/admin.html">Admin</a>
+
+  <div id="admin" class="content">
+
+    <h2>Upload a photo!</h2>
+    <div class="add">
+      <div class="form">
+        <input v-model="title" placeholder="Give the pic a name">
+         <p></p>
+        <textarea v-model="description" placeholder="Enter a caption"> </textarea>
+        <input type="file" name="photo" @change="fileChanged">
+         <p></p>
+        <button @click="upload">post pic</button>
+      </div>
+       <p></p>
+      <div class="upload" v-if="addItem">
+        <h2>{{addItem.title}}</h2>
+        <img :src="addItem.path" />
+        <p>{{addItem.description}}</p>
+      </div>
+    </div>
+
+    <h3></h3>
+
+    <p>
+    <button @click="previousItem">Previous</button>
+    <button @click="nextItem">Next</button>
+    </p>
+
+    <div class="thePic">
+      <img :src="items[currentNumber].path" height="500" width="790">
+    </div>
+    <h1>{{items[currentNumber].description}}<h1>
+
+    <h3 class="bottom"></h3>
+
+    <div class="daLink">
+      <a href="https://github.com/BryceFuller1/CreativeProject4">My github</a>
+    </div>
+
   </div>
 
-  <div class="daLink">
-    <a href="https://github.com/BYU-CS-260-Winter-2019/lab-4-BryceFuller1">My github</a>
-  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
-  <script src="/script.js"></script>
+  <script src="/admin.js"></script>
 </body>
 
 </html>
